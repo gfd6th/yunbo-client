@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html {{ HTML_ATTRS }}>
+
+<head {{ HEAD_ATTRS }}>
+  {{ HEAD }}
+  <% if (process.env.NODE_ENV === 'development') { %>
+  <script src="http://localhost:8098"></script>
+  <% } %>
+</head>
+
+<body {{ BODY_ATTRS }}>
+  {{ APP }}
+</body>
+
+</html>
