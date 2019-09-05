@@ -4,6 +4,7 @@
     <Navbar />
     <Popup />
     <action-sheet />
+    <SubscribeModal />
   </div>
 </template>
 
@@ -11,8 +12,9 @@
 import Navbar from '@/components/Navbar'
 import Popup from '@/components/courses/Popup'
 import actionSheet from '@/components/actionSheet'
+import SubscribeModal from '@/components/SubscribeModal'
 export default {
-  components: { Navbar, Popup, actionSheet }
+  components: { SubscribeModal, Navbar, Popup, actionSheet }
 }
 </script>
 
@@ -205,5 +207,10 @@ h1 {
 }
 .inline {
   display: inline;
+}
+.van-skeleton__row,
+.van-skeleton__title,
+.van-skeleton__avatar {
+  background-color: #cbd5e0 !important;
 }
 </style>

@@ -9,10 +9,6 @@
       <tabbar-item name="home" icon="home-o" to="/">
         所有课程
       </tabbar-item>
-      <tabbar-item name="contact" icon="service-o" to="/contact">
-        咨询合作
-      </tabbar-item>
-
       <tabbar-item name="me" icon="user-circle-o" to="/me">
         我
       </tabbar-item>

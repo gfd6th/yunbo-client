@@ -37,7 +37,7 @@ export default {
   methods: {
     login() {
       this.$store.commit('closeLoginModal')
-      this.$router.push('/auth/login')
+      this.$router.push('/auth/login?redirect=' + this.$route.fullPath)
     },
     showPaidAction() {
       this.$store.commit('showPaidAction')

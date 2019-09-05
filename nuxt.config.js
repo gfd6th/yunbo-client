@@ -46,7 +46,8 @@ export default {
   },
 
   build: {
-    transpile: ['vue-clamp', 'resize-detector']
+    transpile: ['vue-clamp', 'resize-detector'],
+    publicPath: 'http://pic.vifashion.cn/cdn'
   },
 
   env: {
@@ -111,10 +112,10 @@ export default {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    // host: 'yunbo.api.vifashion.cn',
     // host: 'http://locahost:8080',
-    prefix: '/api',
-    proxy: true // Can be also an object with default options
+    // prefix: '/api',
+    baseURL: 'http://yunbo.api.vifashion.cn/api',
+    proxy: false // Can be also an object with default options
   },
   proxy: {
     '/api/': {

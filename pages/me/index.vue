@@ -31,10 +31,10 @@
       <template v-if="ownGroup">
         <div class="flex py-1">
           <div style="width:40%" class="text-right pr-2">
-            群主:
+            拥有的群(口令):
           </div>
           <ol>
-            <GroupItem :group="group" v-for="group in ownGroup" />
+            <GroupItem :group="group" v-for="group in ownGroup" class="mb-2" />
           </ol>
         </div>
         <div class="flex py-1">
@@ -117,9 +117,9 @@ export default {
   },
   methods: {
     total(groups) {
-      return groups.reduce((acc, cur) => {
-        return acc.profit + cur.profit
-      })
+      // eslint-disable-next-line
+      const total = groups.map(group => group.profit)
+      return total.reduce((acc, cur) => acc + cur)
     }
   }
 }
@@ -143,6 +143,7 @@ export default {
 }
 .me {
   /* background-image: url('~assets/img/seigaiha.png'); */
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  padding-bottom: 5rem;
 }
 </style>

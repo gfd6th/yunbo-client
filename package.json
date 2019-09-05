@@ -9,6 +9,7 @@
     "precommit": "yarn lint",
     "dev": "nuxt",
     "build": "nuxt build",
+    "upload": "node upload.js",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "start-devtools": "vue-devtools"
@@ -22,6 +23,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "nuxt": "^2.0.0",
+    "qiniu": "^7.2.2",
     "sass-loader": "^7.2.0",
     "vant": "^2.1.3",
     "vue-clamp": "^0.2.1",

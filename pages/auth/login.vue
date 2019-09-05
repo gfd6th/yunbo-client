@@ -24,10 +24,13 @@ export default {
   },
   created() {
     if (!this.hasError) this.socialLogin('wechat')
+    console.log('login fail')
   },
   methods: {
     socialLogin(service) {
-      window.location.href = `${process.env.baseUrl}api/auth/login/${service}`
+      window.location.href = `${
+        process.env.baseUrl
+      }api/auth/login/${service}?redirect=${this.$route.query.redirect || '/'}`
     }
   }
 }

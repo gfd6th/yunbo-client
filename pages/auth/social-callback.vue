@@ -137,17 +137,20 @@ export default {
     },
 
     saveAccessToken(token) {
-      console.log('token', token)
+      // console.log('token', token)
       // this.$auth.setToken('local', 'Bearer ' + this.token)
       // this.$auth.setStrategy('local')
       this.$auth
         .setUserToken(token)
         .then(() => {
           return this.$router.push(this.redirect)
+          // console.log(,this.redirect)
+          // window.location.href = this.redirect
         })
         .catch((e) => {
           // this.$auth.logout()
           return this.$router.push('/auth/login?error=1')
+          // window.location.href = '/auth/login?error=1'
         })
     },
 
