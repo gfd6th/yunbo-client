@@ -149,7 +149,7 @@ export default {
       this.lessonQuery = index
       this.findLesson()
       this.playerOptions.sources[0].src = this.src
-      this.playerOptions.autoplay = true
+      // this.playerOptions.autoplay = true
 
       this.getWxjssdk(index)
     }
