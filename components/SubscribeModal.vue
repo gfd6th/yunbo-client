@@ -4,7 +4,7 @@
     @input="$store.commit('closeSubscribeModal')"
     class="text-center p-4"
   >
-    <van-image width="200" height="200" src="/static/qrcode.jpg" />
+    <van-image width="200" height="200" src="/qrcode.jpg" />
     <div class="text-sm">
       <div>
         请关注我们的微信公众号
