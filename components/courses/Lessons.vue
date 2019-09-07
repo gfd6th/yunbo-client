@@ -10,7 +10,7 @@
     >
       <Row :class="[{ disabled: !item.video }]">
         <van-Col span="1">
-          <Icon v-if="!item.video" :name="lock" size="0.8rem" />
+          <Icon v-if="!item.video" name="/lock.svg" size="0.8rem" />
         </van-Col>
 
         <van-Col span="23">
@@ -28,7 +28,6 @@
 
 <script>
 import { Row, Col, Icon } from 'vant'
-import lock from '~/assets/img/lock.svg'
 
 export default {
   components: {
@@ -37,11 +36,7 @@ export default {
     Icon
   },
   props: ['lessons', 'lesson', 'lessonQuery'],
-  data() {
-    return {
-      lock
-    }
-  },
+
   mounted() {
     const lesson = this.$route.query.lesson
     if (lesson) {

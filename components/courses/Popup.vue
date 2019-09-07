@@ -12,7 +12,7 @@
     </template>
     <template v-if="!$auth.loggedIn">
       <p>请登录后查看</p>
-      <Button :icon="wechat" @click="login" type="primary" block>
+      <Button @click="login" icon="/wechat.svg" type="primary" block>
         使用微信登录
       </Button>
     </template>
@@ -21,19 +21,13 @@
 
 <script>
 import { Button, Popup } from 'vant'
-import wechat from '~/assets/img/wechat.svg'
-// import { mapMutations } from 'vuex'
 export default {
   components: {
     Button,
     Popup
   },
   // props: ['show'],
-  data() {
-    return {
-      wechat
-    }
-  },
+
   methods: {
     login() {
       this.$store.commit('closeLoginModal')

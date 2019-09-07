@@ -53,6 +53,7 @@ export default {
   env: {
     baseUrl: process.env.BASE_URL || 'http://yunbo.api.vifashion.cn/',
     shareCover: 'http://placehold.it/100/100'
+    // cdn: 'http://pic.vifashion.cn/'
     // baseUrl: process.env.BASE_URL || 'http://localhost:3000/'
   },
   /*
@@ -64,7 +65,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  // css: ['vant/lib/icon/local.css'],
   /*
    ** Plugins to load before mounting the App
    */
