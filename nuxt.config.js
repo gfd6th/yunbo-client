@@ -13,7 +13,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: '广州番禺云泊硬笔, 小学初中生硬笔书法课程视频'
       },
       {
         name: 'viewport',
@@ -47,7 +47,7 @@ export default {
 
   build: {
     transpile: ['vue-clamp', 'resize-detector'],
-    publicPath: 'http://pic.vifashion.cn'
+    publicPath: 'http://pic.vifashion.cn/cdn'
   },
 
   env: {
@@ -68,7 +68,14 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vant', '@/plugins/helpers'],
+  plugins: [
+    '@/plugins/vant',
+    '@/plugins/helpers',
+    {
+      src: '~/plugins/wxjssdk.js',
+      mode: 'client'
+    }
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -114,8 +121,8 @@ export default {
   axios: {
     // host: 'http://locahost:8080',
     // prefix: '/api',
-    baseURL: 'http://yunbo.api.vifashion.cn/api',
-    proxy: false // Can be also an object with default options
+    baseURL: 'http://yunbo.api.vifashion.cn/api'
+    // proxy: true // Can be also an object with default options
   },
   proxy: {
     '/api/': {

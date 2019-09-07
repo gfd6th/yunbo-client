@@ -5,6 +5,7 @@
       :key="index"
       @click="$emit('toLesson', { item, index: index + 1 })"
       :class="[{ current: index + 1 == lessonQuery }]"
+      :data-lesson="index + 1"
       class="py-2"
     >
       <Row :class="[{ disabled: !item.video }]">
@@ -39,6 +40,12 @@ export default {
   data() {
     return {
       lock
+    }
+  },
+  mounted() {
+    const lesson = this.$route.query.lesson
+    if (lesson) {
+      document.querySelector(`[data-lesson="${lesson}"]`).scrollIntoView()
     }
   }
 }

@@ -1,88 +1,75 @@
 const fs = require('fs')
-const path = require('path')
-const qiniu = require('qiniu')
-const PUBLIC_PATH = path.join(__dirname, '/')
 
+const qiniu = require('qiniu')
 // 上传凭证
 const accessKey = 'YsIpsbDFPEM8BX6ux3Jf3gg800PsLKkw53IxGXRe'
 const secretKey = 'ino40BGVEMxO3uieHP3Yb6d63Nt0AxyyRB1j4DeV'
 const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
-
-const options = {
-  scope: 'yunbo'
-}
-const putPolicy = new qiniu.rs.PutPolicy(options)
-const uploadToken = putPolicy.uploadToken(mac)
-
 const config = new qiniu.conf.Config()
+
+// 存储空间名称
+const bucket = 'yunbo'
+
+// 要上传的资源目录
+const staticPath = '.nuxt/dist/client'
+
+// 上传后的文件前缀
+const prefix = 'cdn'
+
 // 空间对应的机房
+
+// 创建并修改配置对象(Zone_z0=华东 Zone_z1=华北 Zone_z2=华南 Zone_na0=北美)
 config.zone = qiniu.zone.Zone_z2
 // 是否使用https域名
 config.useHttpsDomain = true
 // 上传是否使用cdn加速
 config.useCdnDomain = true
+// 创建额外内容对象
+const putExtra = new qiniu.form_up.PutExtra()
 
-/**
- * 遍历文件夹递归上传
- * @param {path} src 本地路径
- * @param {string} dist oos文件夹名
- * @param {boolean} isDir 是否为文件夹下文件
- */
-async function addFileToOSSSync(src, dist, isDir) {
-  const docs = fs.readdirSync(src)
-  docs.forEach(function(doc) {
-    const _src = src + '/' + doc
-    const _dist = dist + '/' + doc
-    const st = fs.statSync(_src)
-    // 判断是否为文件
-    if (st.isFile() && dist !== 'LICENSES`') {
-      putOSS(_src, !isDir ? doc : `fonts/${doc}`) // 如果是文件夹下文件，文件名为 fonts/文件名
-    }
-    // 如果是目录则递归调用自身
-    else if (st.isDirectory()) {
-      addFileToOSSSync(_src, _dist, true)
-    }
+// 创建表单上传对象
+const formUploader = new qiniu.form_up.FormUploader(config)
+// 文件上传方法
+function uploadFile(localFile) {
+  // 配置上传到七牛云的完整路径
+  const key = localFile.replace(staticPath, prefix)
+  const options = {
+    scope: bucket + ':' + key
+  }
+  const putPolicy = new qiniu.rs.PutPolicy(options)
+  // 生成上传凭证
+  const uploadToken = putPolicy.uploadToken(mac)
+  // 上传文件
+  formUploader.putFile(uploadToken, key, localFile, putExtra, function(
+    respErr,
+    respBody,
+    respInfo
+  ) {
+    if (respErr) throw respErr
+    console.log('已上传: ', respBody.key)
   })
 }
-/**
- *单个文件上传至oss
- */
-async function putOSS(src, dist) {
-  try {
-    const localFile = src
-    const formUploader = new qiniu.form_up.FormUploader(config)
-    const putExtra = new qiniu.form_up.PutExtra()
-    const key = dist
-    // 文件上传
-    await formUploader.putFile(uploadToken, key, localFile, putExtra, function(
-      respErr,
-      respBody,
-      respInfo
-    ) {
-      if (respErr) {
-        throw respErr
-      }
-      if (respInfo.statusCode == 200) {
-        console.log(key + '上传oss成功')
-      } else {
-        console.log(respInfo.statusCode)
-        console.log(respBody)
-      }
+// 目录上传方法
+function uploadDirectory(dirPath) {
+  fs.readdir(dirPath, function(err, files) {
+    if (err) throw err
+    // 遍历目录下的内容
+    files.forEach((item) => {
+      const path = `${dirPath}/${item}`
+      fs.stat(path, function(err, stats) {
+        if (err) throw err
+        // 是目录就接着遍历 否则上传
+        if (stats.isDirectory()) uploadDirectory(path)
+        else uploadFile(path, item)
+      })
     })
-  } catch (e) {
-    console.log('上传失败'.e)
-  }
+  })
 }
-/**
- *上传文件启动
- */
-async function upFile() {
-  try {
-    const src = PUBLIC_PATH + '.nuxt/dist/client'
-    const docs = fs.readdirSync(src)
-    await addFileToOSSSync(src, docs)
-  } catch (err) {
-    console.log('上传oss失败', err)
+fs.exists(staticPath, function(exists) {
+  if (!exists) {
+    console.log('目录不存在！')
+  } else {
+    console.log('开始上传...')
+    uploadDirectory(staticPath)
   }
-}
-upFile()
+})

@@ -23,7 +23,7 @@
                   <van-image
                     :src="course.img"
                     fit="cover"
-                    lazy-load
+                    lazy-load="true"
                     class="radius box-shadow"
                   />
                   <tag

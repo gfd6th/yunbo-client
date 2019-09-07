@@ -12,7 +12,7 @@
       >
         <span class="text-gray pr-2">
           <Info :progress="progress" :total="lessons.length" />
-          <span v-if="!lesson">
+          <span v-if="fromHome">
             <Tag v-if="free" type="danger">
               免费
             </Tag>
@@ -37,7 +37,12 @@ import VClamp from 'vue-clamp'
 import Info from '@/components/courses/Info'
 export default {
   components: { Icon, VClamp, Tag, Info },
-  props: ['intro', 'level', 'lessons', 'free', 'lesson', 'progress']
+  props: ['intro', 'level', 'lessons', 'free', 'progress'],
+  computed: {
+    fromHome() {
+      return !this.$route.query.lesson
+    }
+  }
 }
 </script>
 

@@ -16,7 +16,6 @@
             <intro
               :intro="intro"
               :lessons="lessons"
-              :lesson="lesson"
               :free="free"
               :progress="progress"
               :level="level"
@@ -29,6 +28,7 @@
         >
           <skeleton :row="10" :loading="loading">
             <Lessons
+              ref="lessons"
               :lessons="lessons"
               v-on:toLesson="toLesson"
               :lesson="lesson"
@@ -149,9 +149,9 @@ export default {
       this.lessonQuery = index
       this.findLesson()
       this.playerOptions.sources[0].src = this.src
-      // this.playerOptions.autoplay = true
+      this.playerOptions.autoplay = true
 
-      this.getWxjssdk(index)
+      this.configwx(index)
     }
   }
 }
