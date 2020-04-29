@@ -46,8 +46,8 @@ export default {
   },
 
   build: {
-    transpile: ['vue-clamp', 'resize-detector'],
-    publicPath: 'http://pic.vifashion.cn/cdn'
+    transpile: ['vue-clamp', 'resize-detector']
+    // publicPath: 'http://pic.vifashion.cn/cdn'
   },
 
   env: {
