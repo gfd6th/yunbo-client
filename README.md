@@ -1,3 +1,16 @@
+- demo:
+
+  - 前台: http://yunbo.vifashion.cn
+    
+     
+    ![二维码](qrcode.jpg)
+
+    加入群组的口令: rightCode
+    微信服务号: yunbo020
+
+  - 后台: http://yunbo.api.vifashion.cn
+    管理员账户: admin/admin
+
 ### 项目说明
 
 基于微信服务号授权的课程点播系统.
