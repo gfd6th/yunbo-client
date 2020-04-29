@@ -1,14 +1,16 @@
 - demo:
 
   - 前台: http://yunbo.vifashion.cn
+  - 源码: https://github.com/gfd6th/yunbo-client
     
      
-    ![二维码](qrcode.jpg)
+    ![二维码](https://github.com/gfd6th/yunbo-client/blob/master/qrcode.jpg)
 
     加入群组的口令: rightCode
     微信服务号: yunbo020
 
   - 后台: http://yunbo.api.vifashion.cn
+  - 后台源码: https://github.com/gfd6th/yunbo-api
     管理员账户: admin/admin
 
 ### 项目说明
