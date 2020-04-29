@@ -7,10 +7,12 @@
     ![二维码](https://github.com/gfd6th/yunbo-client/blob/master/qrcode.jpg)
 
     加入群组的口令: rightCode
+    
     微信服务号: yunbo020
 
   - 后台: http://yunbo.api.vifashion.cn
   - 后台源码: https://github.com/gfd6th/yunbo-api
+  
     管理员账户: admin/admin
 
 ### 项目说明
